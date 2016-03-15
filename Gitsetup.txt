@@ -1,0 +1,7 @@
+1£∫œ¬‘ÿ https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz
+
+2£∫tar zxf git-1.9.4.tar.gz
+
+3£∫÷¥––./configure
+4£∫make
+5£∫make install
