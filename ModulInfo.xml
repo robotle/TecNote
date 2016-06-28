@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="Role_ModuleInfo" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<alias>
+		<typeAlias alias="Role_ModuleInfo" type="QtoneYWWZ.Model.ModuleInfo, QtoneYWWZ.Source_Code" />
+	</alias>
+
+	<cacheModels>
+		<cacheModel id="CacheLRU_Role_ModuleInfo"  implementation="LRU" >
+			<flushInterval minutes="2" />
+			<flushOnExecute  statement="Insert_Role_ModuleInfo"/>
+			<flushOnExecute  statement="Update_Role_ModuleInfo"/>
+			<flushOnExecute  statement="Delete_Role_ModuleInfo"/>
+			<flushOnExecute  statement="Update_Role_ModuleInfo_ModuleLevel"/>
+			<property name="CacheSize" value="100"/>
+		</cacheModel>
+	</cacheModels>
+
+	<resultMaps>
+		<resultMap id="SelectResult_Role_ModuleInfo" class="Role_ModuleInfo">
+			<result property="ModuleInfoID" column="ModuleInfoID" />
+			<result property="ModuleID" column="ModuleID" />
+			<result property="ParentID" column="ParentID" />
+			<result property="ModuleName" column="ModuleName" />
+			<result property="ModuleFullName" column="ModuleFullName" />
+			<result property="ModuleCode" column="ModuleCode" />
+			<result property="PageUrl" column="PageUrl" />
+			<result property="OrderNo" column="OrderNo" />
+			<result property="IsMenu" column="IsMenu" />
+			<result property="IsCheck" column="IsCheck" />
+			<result property="IsEnabled" column="IsEnabled" />
+			<result property="IsExpand" column="IsExpand" />
+			<result property="ModuleLevel" column="ModuleLevel" />
+			<result property="IsNewWin" column="IsNewWin" />
+			<result property="CreateUserID" column="CreateUserID" />
+			<result property="CreateTime" column="CreateTime" />
+			<result property="ModifyUserID" column="ModifyUserID" />
+			<result property="ModifyTime" column="ModifyTime" />
+		</resultMap>
+	</resultMaps>
+
+	<statements>
+		<insert id="Insert_Role_ModuleInfo" parameterClass="Role_ModuleInfo">
+			insert into Role_ModuleInfo (
+			ModuleInfoID,
+			ModuleID,
+			ParentID,
+			ModuleName,
+			ModuleFullName,
+			ModuleCode,
+			PageUrl,
+			OrderNo,
+			IsMenu,
+			IsCheck,
+			IsEnabled,
+			IsExpand,
+			ModuleLevel,
+			IsNewWin,
+			CreateUserID,
+			CreateTime,
+			ModifyUserID,
+			ModifyTime
+			)values(
+			#ModuleInfoID#,
+			#ModuleID#,
+			#ParentID#,
+			#ModuleName#,
+			#ModuleFullName#,
+			#ModuleCode#,
+			#PageUrl#,
+			#OrderNo#,
+			#IsMenu#,
+			#IsCheck#,
+			#IsEnabled#,
+			#IsExpand#,
+			#ModuleLevel#,
+			#IsNewWin#,
+			#CreateUserID#,
+			#CreateTime#,
+			#ModifyUserID#,
+			#ModifyTime#
+			)
+		</insert>
+
+		<update id="Update_Role_ModuleInfo" parameterClass="Role_ModuleInfo">
+			update Role_ModuleInfo set
+			ModuleID=#ModuleID#,
+			ParentID=#ParentID#,
+			ModuleName=#ModuleName#,
+			ModuleFullName=#ModuleFullName#,
+			ModuleCode=#ModuleCode#,
+			PageUrl=#PageUrl#,
+			OrderNo=#OrderNo#,
+			IsMenu=#IsMenu#,
+			IsCheck=#IsCheck#,
+			IsEnabled=#IsEnabled#,
+			IsExpand=#IsExpand#,
+			ModuleLevel=#ModuleLevel#,
+			IsNewWin=#IsNewWin#,
+			CreateUserID=#CreateUserID#,
+			CreateTime=#CreateTime#,
+			ModifyUserID=#ModifyUserID#,
+			ModifyTime=#ModifyTime#
+			where
+			ModuleInfoID=#ModuleInfoID#
+		</update>
+
+		<delete id="Delete_Role_ModuleInfo" parameterClass="long">
+			delete from Role_ModuleInfo
+			where
+			ModuleInfoID=#value#
+		</delete>
+
+		<sql id="BaseSelectSql_Role_ModuleInfo">
+			Role_ModuleInfo.ModuleInfoID,
+			Role_ModuleInfo.ModuleID,
+			Role_ModuleInfo.ParentID,
+			Role_ModuleInfo.ModuleName,
+			Role_ModuleInfo.ModuleFullName,
+			Role_ModuleInfo.ModuleCode,
+			Role_ModuleInfo.PageUrl,
+			Role_ModuleInfo.OrderNo,
+			Role_ModuleInfo.IsMenu,
+			Role_ModuleInfo.IsCheck,
+			Role_ModuleInfo.IsEnabled,
+			Role_ModuleInfo.IsExpand,
+			Role_ModuleInfo.ModuleLevel,
+			Role_ModuleInfo.IsNewWin,
+			Role_ModuleInfo.CreateUserID,
+			Role_ModuleInfo.CreateTime,
+			Role_ModuleInfo.ModifyUserID,
+			Role_ModuleInfo.ModifyTime
+			From Role_ModuleInfo
+		</sql>
+
+		<select id="SelectObject_Role_ModuleInfo" parameterClass="string" resultMap="SelectResult_Role_ModuleInfo" cacheModel="CacheLRU_Role_ModuleInfo">
+			select
+			<include refid="BaseSelectSql_Role_ModuleInfo"/>
+			where
+			Role_ModuleInfo.ModuleID=#value#
+		</select>
+
+		<select id="SelectAll_Role_ModuleInfo"  parameterClass="long" resultMap="SelectResult_Role_ModuleInfo" cacheModel="CacheLRU_Role_ModuleInfo">
+			select
+			<include refid="BaseSelectSql_Role_ModuleInfo"/>
+			order by Role_ModuleInfo.ModuleInfoID asc
+		</select>
+
+		<select id="SelectAllCount_Role_ModuleInfo"  parameterClass="long"  resultClass="long">
+			select count(*) as total from Role_ModuleInfo
+		</select>
+
+		<select id="SelectDefault_Role_ModuleInfo" parameterClass="hashtable" resultMap="SelectResult_Role_ModuleInfo" cacheModel="CacheLRU_Role_ModuleInfo">
+			select top $top$
+			<include refid="BaseSelectSql_Role_ModuleInfo"/>
+			order by Role_ModuleInfo.ModuleInfoID desc
+		</select>
+
+		<select id="SelectByParameter_Role_ModuleInfo" parameterClass="hashtable" resultMap="SelectResult_Role_ModuleInfo" cacheModel="CacheLRU_Role_ModuleInfo">
+			select top $top$
+			<include refid="BaseSelectSql_Role_ModuleInfo"/>
+			<dynamic prepend="where">
+				<isNotEmpty prepend="and" property="ModuleInfoID" >
+					Role_ModuleInfo.ModuleInfoID = #ModuleInfoID#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModuleID" >
+					Role_ModuleInfo.ModuleID like '%$ModuleID$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ParentID" >
+					Role_ModuleInfo.ParentID like '%$ParentID$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModuleName" >
+					Role_ModuleInfo.ModuleName like '%$ModuleName$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModuleFullName" >
+					Role_ModuleInfo.ModuleFullName like '%$ModuleFullName$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModuleCode" >
+					Role_ModuleInfo.ModuleCode like '%$ModuleCode$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="PageUrl" >
+					Role_ModuleInfo.PageUrl like '%$PageUrl$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="OrderNo" >
+					Role_ModuleInfo.OrderNo like '%$OrderNo$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="IsMenu" >
+					Role_ModuleInfo.IsMenu = #IsMenu#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="IsCheck" >
+					Role_ModuleInfo.IsCheck = #IsCheck#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="IsEnabled" >
+					Role_ModuleInfo.IsEnabled = #IsEnabled#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="IsExpand" >
+					Role_ModuleInfo.IsExpand = #IsExpand#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModuleLevel" >
+					Role_ModuleInfo.ModuleLevel = #ModuleLevel#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="IsNewWin" >
+					Role_ModuleInfo.IsNewWin = #IsNewWin#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="CreateUserID" >
+					Role_ModuleInfo.CreateUserID like '%$CreateUserID$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="CreateTime" >
+					Role_ModuleInfo.CreateTime = #CreateTime#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModifyUserID" >
+					Role_ModuleInfo.ModifyUserID like '%$ModifyUserID$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModifyTime" >
+					Role_ModuleInfo.ModifyTime = #ModifyTime#
+				</isNotEmpty>
+				<!-- 扩充 -->
+				<isNotEmpty prepend="and" property="CreateTime_From" >
+					Role_ModuleInfo.CreateTime >= #CreateTime_From#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="CreateTime_To" >
+					#CreateTime_To# >= Role_ModuleInfo.CreateTime
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModifyTime_From" >
+					Role_ModuleInfo.ModifyTime >= #ModifyTime_From#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="ModifyTime_To" >
+					#ModifyTime_To# >= Role_ModuleInfo.ModifyTime
+				</isNotEmpty>
+			</dynamic>
+			order by $orderby$
+		</select>
+
+		<!-- 手动添加 -->
+		<select id="Select_Role_ModuleInfo.ModuleCode"  parameterClass="string"  resultClass="int">
+			select IsNull(Max(Role_ModuleInfo.ModuleLevel), 0) as ModuleLevel from Role_ModuleInfo
+			where Role_ModuleInfo.ModuleCode  like '$ModuleCode$%'
+		</select>
+
+		<update id="Update_Role_ModuleInfo_ModuleLevel" parameterClass="hashtable">
+			update Role_ModuleInfo set
+			ModuleCode=b.ModuleCode+'-'+Role_ModuleInfo.ModuleID , ModuleFullName=b.ModuleFullName+'→'+ Role_ModuleInfo.ModuleName,ModuleLevel=IsNull(b.ModuleLevel,0)+1
+			from Role_ModuleInfo,Role_ModuleInfo b
+			where Role_ModuleInfo.ParentID=b.ModuleID
+			and Role_ModuleInfo.ModuleCode like '$ModuleCode$%'
+			and Role_ModuleInfo.ModuleLevel = $ModuleLevel$
+		</update>
+
+		<select id="GetSubListByParams_Role_ModuleInfo" parameterClass="hashtable" resultMap="SelectResult_Role_ModuleInfo" >
+			select
+			<include refid="BaseSelectSql_Role_ModuleInfo"/>
+			<dynamic prepend="where">
+				<isNotEmpty prepend="and" property="ParentID" >
+					Role_ModuleInfo.ParentID = #ParentID#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="IsEnabled" >
+					Role_ModuleInfo.IsEnabled = #IsEnabled#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="IsMenu" >
+					Role_ModuleInfo.IsMenu = #IsMenu#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="UserID" >
+					Role_ModuleInfo.ModuleID in ( Select Distinct Role_RolePermission.ModuleID
+					FROM Role_RoleInfo INNER JOIN Role_RolePermission ON Role_RoleInfo.RoleID = Role_RolePermission.RoleID
+					Inner Join Role_RoleUser ON Role_RoleInfo.RoleID = Role_RoleUser.RoleID
+					WHERE (Role_RoleInfo.IsEnable = 1) AND (Role_RoleUser.UserID = #UserID#)
+					AND ( Upper(Role_RolePermission.ActionCode )= 'B' ))
+					order by Role_ModuleInfo.OrderNo ASC
+				</isNotEmpty>
+			</dynamic>
+		</select>
+
+	</statements>
+</sqlMap>
